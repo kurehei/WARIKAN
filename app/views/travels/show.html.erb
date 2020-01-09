@@ -1,0 +1,39 @@
+<div class="col-md-4 offset-md-4">
+  <div class="container">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h2 cas>WARIKAN</h2>
+      </div>
+      <div class="card-body">
+        <h1 class="text-center">
+          <%= @travel.name %>
+        </h1>
+        <p>
+          <strong>From date:</strong>
+          <%= @travel.from_date %>
+        </p>
+
+        <p>
+          <strong>To date:</strong>
+          <%= @travel.to_date %>
+        </p>
+
+        <p>
+          <strong>Detail:</strong>
+          <%= @travel.detail %>
+        </p>
+        <% @contents.each_with_index do |content,i|%>
+          <p><%= i %></p>
+          <p><%= content.name%></p>
+        <% end %>
+        <%= link_to "旅行の種類を作る", new_travel_content_path(@travel),class: "text-center btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_travel_path(@travel) ,class: "text-center"%> 
+<%= link_to 'Back', travels_path %>

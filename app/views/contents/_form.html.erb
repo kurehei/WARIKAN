@@ -1,0 +1,25 @@
+<div class="col-md-4 offset-md-4">
+  <div class="card">
+    <%= form_with url: travel_contents_path(), scope: :content do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name ,class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_field :body ,class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :amount %>
+        <%= f.number_field :amount ,class: "form-control"%>
+      </div>
+      
+      <div class="text-center">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
