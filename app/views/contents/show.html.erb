@@ -1,2 +1,26 @@
-<h1>Contents#show</h1>
-<p>Find me in app/views/contents/show.html.erb</p>
+<div class="col-md-4 offset-md-4">
+  <div class="container">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h2 cas>WARIKAN</h2>
+      </div>
+      <div class="card-body">
+        <h1 class="text-center">
+          <%= @content.name %>
+        </h1>
+        <p>
+          <strong>詳細</strong>
+          <%= @content.body %>
+        </p>
+        <p>
+          <strong>金額</strong>
+          <%= @content.amount %>
+        </p>
+
+        <div class="card">
+      </div>
+    </div>
+    <%= link_to 'Edit', edit_travel_content_path() ,class: "text-center"%> 
+    <%= link_to 'Back', travel_path(@content.travel.id) ,class: "text-center"%>
+  </div>
+</div>

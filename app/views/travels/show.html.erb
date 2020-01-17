@@ -2,38 +2,56 @@
   <div class="container">
     <div class="card">
       <div class="card-header bg-primary">
-        <h2 cas>WARIKAN</h2>
+        <h2 class="text-center">WARIKAN</h2>
       </div>
       <div class="card-body">
         <h1 class="text-center">
           <%= @travel.name %>
         </h1>
         <p>
-          <strong>From date:</strong>
+          <strong>旅行開始日:</strong>
           <%= @travel.from_date %>
         </p>
 
         <p>
-          <strong>To date:</strong>
+          <strong>旅行終了日:</strong>
           <%= @travel.to_date %>
         </p>
 
         <p>
-          <strong>Detail:</strong>
+          <strong>旅の詳細</strong>
           <%= @travel.detail %>
         </p>
-        <% @contents.each_with_index do |content,i|%>
-          <p><%= i %></p>
-          <p><%= content.name%></p>
+        <p>
+          <strong>出品合計</strong>
+          <p>＊＊＊円</p>
+        </p>
+        <% if false %>
+          <div class="card">
+            <% @contents.each_with_index do |content,i|%>
+            <div class="card">
+              <p>項目<%= content.name %></p>
+              <p>詳細<%= content.body%></p>
+              <p>金額：<%= content.amount%>円</p>
+            </div>
+            <% end %>
+          <%= link_to "旅行の種類を作る", new_travel_content_path(@travel),class: "text-center btn btn-primary"%>
         <% end %>
-        <%= link_to "旅行の種類を作る", new_travel_content_path(@travel),class: "text-center btn btn-primary"%>
+        <% @members.each do |member|%>
+          <div class="card">
+            <p>名前<%= link_to member.name, travel_member_path(@travel,member)%></p>
+          </div>
+          <% end %>
+        <%= link_to "メンバーを追加する", new_travel_member_path(@travel),class: "text-center btn btn-success"%>
+        
       </div>
     </div>
+    <%= link_to 'Edit', edit_travel_path(@travel) ,class: "text-center"%> 
+    <%= link_to 'Back', travels_path ,class: "text-center"%>
   </div>
 </div>
 
 
 
 
-<%= link_to 'Edit', edit_travel_path(@travel) ,class: "text-center"%> 
-<%= link_to 'Back', travels_path %>
+

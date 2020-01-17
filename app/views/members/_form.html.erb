@@ -1,0 +1,15 @@
+<div class="col-md-4 offset-md-4">
+  <div class="card">
+    <%= form_with url: travel_members_path(), scope: :member do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name ,class: "form-control"%>
+      </div>
+
+      <div class="text-center">
+        <%= f.submit "メンバーを追加"%>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,25 +1,25 @@
 class ContentsController < ApplicationController
- before_action :set_content, only: [:show, :edit, :update, :destroy]
+ before_action :set_member
+ before_action :set_travel
+ before_action :set_content, only: [ :show, :edit, :update, :destroy]
  before_action :authenticate_user!
   def index
   end
 
   def show
+   @travel = Travel.find_by(travel: params[:travel_id])
   end
 
   def new
     @content = Content.new
-
-    @travel = Content.find_by(travel: params[:travel_id])
   end
 
   def create
-    current_user.travels.each do |travel|
-     @content = travel.contents.build(content_params)
-    end
+     
+     @content =@member.contents.build(content_params)
     if @content.save
       flash[:success] = "登録しました"
-      redirect_to root_path
+      redirect_to travel_member_path(@travel, @member)
     else
       raise @content.inspect
       flash[:danger] = "登録できませんでした"
@@ -31,6 +31,7 @@ class ContentsController < ApplicationController
   end
 
   def edit
+    @travel = Travel.find_by(travel: params[:travel_id])
   end
 
   def update
@@ -41,9 +42,16 @@ class ContentsController < ApplicationController
   def set_content
     @content = Content.find(params[:id])
   end
+
+  def set_travel
+    @travel = Travel.find_by(params[:travel_id])
+  end
   
+  def set_member
+    @member = Member.find(params[:member_id])
+  end
 
   def content_params
-    params.require(:content).permit(:travel_id, :name, :amount, :body)
+    params.require(:content).permit(:member_id, :name, :amount, :body)
   end
 end

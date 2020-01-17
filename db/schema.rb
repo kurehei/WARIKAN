@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_112925) do
+ActiveRecord::Schema.define(version: 2020_01_14_225658) do
 
   create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "travel_id", null: false
     t.string "name", comment: "項目"
     t.text "body", comment: "内容"
     t.integer "amount", null: false, comment: "金額"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["travel_id"], name: "index_contents_on_travel_id"
+    t.bigint "member_id", null: false
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -27,6 +26,24 @@ ActiveRecord::Schema.define(version: 2020_01_08_112925) do
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "travel_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_id"], name: "index_members_on_travel_id"
+  end
+
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "content_id", null: false
+    t.integer "payed_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_payments_on_content_id"
+    t.index ["member_id"], name: "index_payments_on_member_id"
   end
 
   create_table "travels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_01_08_112925) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "contents", "travels"
+  add_foreign_key "members", "travels"
+  add_foreign_key "payments", "contents"
+  add_foreign_key "payments", "members"
   add_foreign_key "travels", "users"
 end

@@ -1,0 +1,22 @@
+<div class="col-md-4 offset-md-4">
+  <div class="container">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h2 cas>WARIKAN</h2>
+      </div>
+      <div class="card-body">
+        <h2 class="text-center"><%= @travel.name%></h2>
+        <p class="text-center"><%= @member.name%>さん</p>
+        <div class="card">
+            <% @contents.each do |content|%>
+            <div class="card">
+              <p>項目<%= link_to content.name%></p>
+              <p>詳細<%= content.body%></p>
+              <p>金額：<%= content.amount%>円</p>
+            </div>
+            <% end %>
+          <%= link_to "旅行の種類を作る", new_travel_member_content_path(@travel, @member),class: "text-center btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+</div>

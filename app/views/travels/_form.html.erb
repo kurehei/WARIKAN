@@ -1,38 +1,30 @@
-<%= form_with(model: travel, local: true) do |form| %>
-  <% if travel.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+<div class="col-md-4 offset-md-4">
+  <div class="card">      
+    <%= form_with(model: @travel, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label "旅の題名" %>
+        <%= form.text_field :name ,class: "form-control"%>
+      </div>
 
-      <ul>
-      <% travel.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= form.label "旅行開始日"%>
+        <%= form.date_select :from_date ,class: "form-control"%>
+      </div>
 
+      <div class="form-group">
+        <%= form.label "旅行終了日"%>
+        <%= form.date_select :to_date, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <div class="form-group">
+        <%= form.label "旅について" %>
+        <%= form.text_area :detail, class: "form-control" %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit "旅行を登録する",class: "btn btn-info"%>
+      </div>
+    <%= link_to 'Back', travels_path %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :from_date %>
-    <%= form.date_select :from_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :to_date %>
-    <%= form.date_select :to_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_area :detail %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

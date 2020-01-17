@@ -1,3 +1,3 @@
 class Content < ApplicationRecord
-  belongs_to :travel
+  belongs_to :member
 end

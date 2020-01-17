@@ -7,10 +7,15 @@ class TravelsController < ApplicationController
 
   def new 
     @travel = Travel.new
+
   end
 
   def show
     @contents = @travel.contents
+    @members = @travel.members
+    @members.contents.each do |content|
+      @co ntent
+    end
   end
 
   def edit
@@ -18,9 +23,9 @@ class TravelsController < ApplicationController
   
 
   def create
-    @travel = travels.build(travel_params)
+    @travel = current_user.travels.build(travel_params)
     if @travel.save
-      redirect_to travels_index_path
+      redirect_to @travel
     else
       render :new
     end
