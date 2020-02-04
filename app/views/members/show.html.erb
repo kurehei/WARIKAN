@@ -7,6 +7,7 @@
       <div class="card-body">
         <h2 class="text-center"><%= @travel.name%></h2>
         <p class="text-center"><%= @member.name%>さん</p>
+        <p class="text-center">合計: <%=@amount_sum%>円</p>
         <div class="card">
             <% @contents.each do |content|%>
             <div class="card">

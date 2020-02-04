@@ -7,15 +7,25 @@ class TravelsController < ApplicationController
 
   def new 
     @travel = Travel.new
-
   end
 
   def show
-    @contents = @travel.contents
-    @members = @travel.members
-    @members.contents.each do |content|
-      @co ntent
-    end
+    @members = Member.joins(:travel).where(travel_id: @travel.id)
+    contents = Content.joins(member: :travel).where(member_id: @members.ids)
+
+    amount = contents.map { |content| content.amount}
+    @amount = amount.inject {|num, sum| 
+    num = sum + num
+   }
+    @members1 = Member.where(travel_id: @travel)
+    
+    # raise members.inspect
+   
+    member3 = @members1.each { |member| 
+    @content9 = member.sum_content
+   # raise @content.inspect
+  } 
+ # raise @content9.inspect
   end
 
   def edit
@@ -44,5 +54,9 @@ class TravelsController < ApplicationController
   end
   def travel_params
     params.require(:travel).permit(:user_id, :name, :from_date, :to_date, :detail)
+  end
+
+  def sum_content
+    
   end
 end
