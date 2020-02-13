@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_225658) do
+ActiveRecord::Schema.define(version: 2020_02_13_103919) do
 
   create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", comment: "項目"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_225658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "member_id", null: false
+    t.string "average_amount", null: false
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -7,16 +7,17 @@ class ContentsController < ApplicationController
   end
 
   def show
-   @travel = Travel.find_by(travel: params[:travel_id])
+    @content = Content.find(params[:id])
+    
   end
 
   def new
     @content = Content.new
+    @members = Member.joins(:travel).where(travel: @travel)
   end
 
   def create
-     
-     @content =@member.contents.build(content_params)
+    @content =@member.contents.build(content_params)
     if @content.save
       flash[:success] = "登録しました"
       redirect_to travel_member_path(@travel, @member)
@@ -52,6 +53,6 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    params.require(:content).permit(:member_id, :name, :amount, :body)
+    params.require(:content).permit(:member_id, :name, :amount, :body,average_amount: [])
   end
 end

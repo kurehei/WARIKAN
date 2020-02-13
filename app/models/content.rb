@@ -8,4 +8,7 @@ class Content < ApplicationRecord
     num = sum + num
    }
   end
+  # 配列でデータを格納する
+  serialize :average_amount, Array 
+  
 end

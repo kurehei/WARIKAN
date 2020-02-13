@@ -17,10 +17,19 @@
           <%= @content.amount %>
         </p>
 
+        <p>
+          <strong>金額</strong>
+          <%= @content.average_amount %>
+        </p>
+
         <div class="card">
+          <% @members.each do |member| %>
+          <div class = card-body>
+            <%= member.name %>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
-    <%= link_to 'Edit', edit_travel_content_path() ,class: "text-center"%> 
-    <%= link_to 'Back', travel_path(@content.travel.id) ,class: "text-center"%>
   </div>
 </div>

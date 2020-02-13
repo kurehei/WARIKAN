@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :members do
       resources :contents
     end
+    resources :payments
   end
   resources :payments
   

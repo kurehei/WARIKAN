@@ -17,15 +17,6 @@ class TravelsController < ApplicationController
     @amount = amount.inject {|num, sum| 
     num = sum + num
    }
-    @members1 = Member.where(travel_id: @travel)
-    
-    # raise members.inspect
-   
-    member3 = @members1.each { |member| 
-    @content9 = member.sum_content
-   # raise @content.inspect
-  } 
- # raise @content9.inspect
   end
 
   def edit
