@@ -10,5 +10,7 @@ class Content < ApplicationRecord
   end
   # 配列でデータを格納する
   serialize :average_amount, Array 
+
+  
   
 end
