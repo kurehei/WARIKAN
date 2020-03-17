@@ -1,0 +1,2 @@
+class AdvanceMember < ApplicationRecord
+end

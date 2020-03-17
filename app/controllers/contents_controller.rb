@@ -12,11 +12,14 @@ class ContentsController < ApplicationController
 
   def new
     @content = Content.new
-    @members = Member.joins(:travel).where(travel: @travel)
+    travel = Travel.find(params[:travel_id])
+    @members = Member.joins(:travel).where(travel_id: @travel.id)
+        # sraise @members.inspect
   end
 
   def create
     @content =@member.contents.build(content_params)
+    raise content_params.inspect
     if @content.save
       flash[:success] = "登録しました"
       redirect_to travel_member_path(@travel, @member)
@@ -44,7 +47,7 @@ class ContentsController < ApplicationController
   end
 
   def set_travel
-    @travel = Travel.find_by(params[:travel_id])
+    @travel = Travel.find(params[:travel_id])
   end
   
   def set_member

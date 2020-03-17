@@ -6,16 +6,17 @@ class MembersController < ApplicationController
   end
 
   def show
-    @travel = @member.travel
     @contents = @member.contents
     amount = @contents.map { |content| content.amount}
     @amount_sum = amount.inject {|num, sum| num = sum + num }
     @contents = Content.joins(member: :travel).merge(Member.where(id: @member.id, travel_id: @travel.id))
-    # raise @contents.inspect
-    @contents.each { |content|  
-      @result = content.amount / content.average_amount.length if @result.present?
+     # raise @contents.inspect
+    @contents.each do |content| 
+      #raise content.inspect 
+      @result = content.amount / content.average_amount.length
       
-  }
+    end
+     # raise @result.inspect
   end
 
   def new
